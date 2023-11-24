@@ -1,0 +1,52 @@
+@media (min-width: 300px) {
+  #image1 {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 300px) {
+  #heading1 {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 300px) {
+  #heading2 {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 300px) {
+  #container-header {
+    padding: 10px 0px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  #container-header {
+    padding: 30px 0px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  #image1 {
+    width: 90px;
+    height: 95px;
+  }
+}
+
+@media (min-width: 992px) {
+  #heading1 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  #heading2 {
+    font-size: 28px;
+  }
+}
+
