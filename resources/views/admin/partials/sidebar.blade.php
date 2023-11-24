@@ -15,8 +15,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item @yield('dashboard-sidebar')">
+                <a class="nav-link" href="{{ route("admin.dashboard") }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -30,36 +30,36 @@
             </div>
 
             <!-- Nav Item - Produk -->
-            <li class="nav-item">
+            <li class="nav-item @yield('produk-sidebar')">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-box"></i>
                     <span>Produk</span></a>
             </li>
 
             <!-- Nav Item - Pemesanan -->
-            <li class="nav-item">
+            <li class="nav-item @yield('pemesanan-sidebar')">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>Pemesanan</span></a>
             </li>
 
             <!-- Nav Item - Data Penjualan -->
-            <li class="nav-item">
+            <li class="nav-item @yield('penjualan-sidebar')">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-line"></i>
                     <span>Data Penjualan</span></a>
             </li>
 
             <!-- Nav Item - Customer -->
-            <li class="nav-item">
+            <li class="nav-item @yield('customer-sidebar')">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Customer</span></a>
             </li>
 
             <!-- Nav Item - Users -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item @yield('users-sidebar')">
+                <a class="nav-link" href="{{ route('admin.users') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Users</span></a>
             </li>

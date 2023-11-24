@@ -3,6 +3,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Halaman Utama')
+@section('dashboard-sidebar', 'active')
 @section('content')
 
   <!-- main content here -->

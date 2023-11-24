@@ -14,6 +14,12 @@ class AdminController extends Controller
         return view("admin.login");
     }
 
+    public function halamanUsers()
+    {
+        $admins = Admin::all(); // Fetch all admin records
+        return view("admin.halaman_users",  ['admins' => $admins]);
+    }
+
     // public function login(Request $request)
     // {
     //     $credentials = $request->only('username', 'password');
@@ -73,4 +79,27 @@ class AdminController extends Controller
     {
         return view('admin.admin_dashboard');
     }
+
+    public function create()
+    {
+        return view('admin.tambah_admin'); // Tampilkan formulir tambah admin
+    }
+
+    public function store(Request $request)
+    {
+        // Lakukan validasi input
+        $validatedData = $request->validate([
+            'username' => 'required|unique:admin', // Pastikan username unik di tabel admin
+            'password' => 'required|min:5',
+        ]);
+
+        // Simpan admin baru ke database
+        $admin = new Admin();
+        $admin->username = $validatedData['username'];
+        $admin->password = bcrypt($validatedData['password']); // Hash password sebelum disimpan
+        $admin->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Admin berhasil ditambahkan!');
+    }
+
 }

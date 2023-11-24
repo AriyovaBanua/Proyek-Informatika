@@ -29,6 +29,10 @@ Route::get('/login', [AdminController::class, 'halamanLogin'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit'); 
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/users', [AdminController::class, 'halamanUsers'])->name('admin.users');
+Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
+
 // Route::prefix('admin')->middleware('auth')->group(function () {
     
 //     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
