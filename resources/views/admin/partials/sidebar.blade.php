@@ -31,7 +31,7 @@
 
             <!-- Nav Item - Produk -->
             <li class="nav-item @yield('produk-sidebar')">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('produk.index') }}">
                     <i class="fas fa-fw fa-box"></i>
                     <span>Produk</span></a>
             </li>

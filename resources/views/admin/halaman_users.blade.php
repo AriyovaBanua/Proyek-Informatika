@@ -20,27 +20,35 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($admins as $admin)
-            <tr>
-                <td>{{ $admin->username }}</td>
-                <td>
-                    <!-- Tombol edit -->
-                    {{-- <a href="" class="btn btn-primary">Edit</a> --}}
-                    {{-- <a href="{{ route('admin.edit', $admin->username) }}" class="btn btn-primary">Edit</a> --}}
-                    <a href="" class="btn btn-primary">Edit</a>
-                    
-                    <!-- Form untuk menghapus -->
-                    {{-- <form action="{{ route('admin.destroy', $admin->username) }}" method="POST" style="display: inline;"> --}}
-                    <form action="" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+        <!-- ... -->
+            <tbody>
+                @foreach($admins as $admin)
+                <tr>
+                    <td>{{ $admin->username }}</td>
+                    <td>
+                        <!-- Tombol edit -->
+                        <a href="{{ route('admin.edit', $admin->username) }}" class="btn btn-primary">Edit</a>
+                        
+                        <!-- Form untuk menghapus -->
+                        <form action="{{ route('admin.destroy', $admin->username) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return deleteConfirmation('{{ $admin->username }}')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+            <script>
+                function deleteConfirmation(username) {
+                    if (confirm('Apakah Anda yakin ingin menghapus admin ' + username + '?')) {
+                        return true;
+                    }
+                    return false;
+                }
+            </script>
+            <!-- ... -->
+
     </table>
 </div>
 

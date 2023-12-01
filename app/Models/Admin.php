@@ -13,6 +13,8 @@ class Admin extends Authenticatable
     protected $table = 'admin';
     protected $fillable = ['username', 'password'];
     protected $guard = 'web';
+    protected $primaryKey = 'username';
+    public $incrementing = false;
     public function getAuthPassword()
     {
         return $this->password;

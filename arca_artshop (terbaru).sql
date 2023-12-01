@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 11:41 PM
+-- Generation Time: Dec 01, 2023 at 02:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,16 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`username`, `password`) VALUES
-('arcaarca', 'arcaAja'),
-('yoyo', '$2y$10$1d1piZbSQAGfWUMerNKzs.H0gJ4uJNrjEZkgKQBEyf9nY4yiHDgZm');
+INSERT INTO `admin` (`username`, `password`, `updated_at`, `created_at`) VALUES
+('admin', '$2y$12$yqXsuS50foQOOLF5QB9EN.Ad11wcFfAEdaQCtr03ZkFvUBjYJskBi', '2023-11-30 14:58:23', '2023-11-30 14:58:23'),
+('tejak', '$2y$12$fjAiQkDJCriqy/rcBZZHmuY/RvphAHBZCtGWw1TTGRWEeb6jF4xm2', '2023-11-30 15:07:46', '2023-11-30 15:07:46');
 
 -- --------------------------------------------------------
 
@@ -66,10 +68,19 @@ INSERT INTO `customer` (`email`, `nama_customer`, `no_hp`) VALUES
 --
 
 CREATE TABLE `history_produk` (
+  `id` int(11) NOT NULL,
   `code` varchar(50) NOT NULL,
   `harga` int(11) NOT NULL,
   `update_time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history_produk`
+--
+
+INSERT INTO `history_produk` (`id`, `code`, `harga`, `update_time`) VALUES
+(6, 'S002', 85000, '2023-12-01'),
+(7, 'S003', 90000, '2023-12-01');
 
 -- --------------------------------------------------------
 
@@ -93,7 +104,9 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`code`, `stock`, `category`, `nama_produk`, `harga`, `ukuran`, `gambar`, `warna`) VALUES
-('S001', '20', 'Animal', 'Sapi Terbang', 75000, 'S', 'G001', 'Hitam-Putih');
+('S001', '20', 'Animal', 'Sapi Terbang', 75000, 'S', 'sapi.jpg', 'Hitam-Putih'),
+('S002', '12', 'Animal', 'Zebra Nyengir', 85000, 'S', '6569333401ac6_zebra.jpg', 'Hitam-Putih'),
+('S003', '6', 'Animal', 'Hiu Sunda', 90000, 'S', '6569345a1a48e_hiu.jpg', 'Biru');
 
 -- --------------------------------------------------------
 
@@ -106,6 +119,13 @@ CREATE TABLE `total_transakasi` (
   `Order_ID` varchar(50) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `total_transakasi`
+--
+
+INSERT INTO `total_transakasi` (`id`, `Order_ID`, `total`) VALUES
+(1, '0001', 75000);
 
 -- --------------------------------------------------------
 
@@ -123,6 +143,13 @@ CREATE TABLE `transaksi_pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `transaksi_pesanan`
+--
+
+INSERT INTO `transaksi_pesanan` (`order_id`, `email`, `code`, `date`, `status_pesanan`, `subtotal`) VALUES
+('0001', 'surtitejo@gmail.com', 'S001', '2023-11-24', 'Proses', 75000);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -137,6 +164,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `history_produk`
+--
+ALTER TABLE `history_produk`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `produk`
@@ -163,10 +196,16 @@ ALTER TABLE `transaksi_pesanan`
 --
 
 --
+-- AUTO_INCREMENT for table `history_produk`
+--
+ALTER TABLE `history_produk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `total_transakasi`
 --
 ALTER TABLE `total_transakasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

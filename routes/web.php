@@ -29,10 +29,37 @@ Route::get('/login', [AdminController::class, 'halamanLogin'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit'); 
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+
+// Halaman Admin Users ----------------------------------------------------------------------->
 Route::get('/admin/users', [AdminController::class, 'halamanUsers'])->name('admin.users');
 Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
 
+Route::get('admin/{username}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+Route::put('admin/{username}', [AdminController::class, 'update'])->name('admin.update');
+
+Route::delete('admin/{username}', [AdminController::class, 'destroy'])->name('admin.destroy');
+Route::get('admin/success', [AdminController::class, 'success'])->name('admin.success');
+Route::get('admin/error', [AdminController::class, 'error'])->name('admin.error');
+// ------------------------------------------------------------------------------------------->
+
+// Halaman Admin Produk----------------------------------------------------------------------->
+
+use App\Http\Controllers\ProdukController;
+
+Route::get('admin/products', [ProdukController::class, 'index'])->name('produk.index');
+Route::get('admin/poducts/create', [ProdukController::class, 'create'])->name('produk.create');
+Route::post('admin/products/store', [ProdukController::class, 'store'])->name('produk.store');
+
+Route::get('admin/products/{code}/edit', [ProdukController::class, 'edit'])->name('products.edit');
+Route::put('admin/products/{code}', [ProdukController::class, 'update'])->name('products.update');
+Route::delete('admin/products/{code}', [ProdukController::class, 'destroy'])->name('products.destroy');
+
+// ------------------------------------------------------------------------------------------->
+
+use App\Http\Controllers\PengunjungController;
+Route::get('arca_artshop', [PengunjungController::class, 'index'])->name('pengunjung.index');
 // Route::prefix('admin')->middleware('auth')->group(function () {
     
 //     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -59,7 +86,4 @@ Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.stor
 //     Route::put('/profile', 'AdminProfileController@update')->name('admin.profile.update');
 // });
 
-use App\Http\Controllers\ProdukController;
-
-Route::get('/arca_artshop', [ProdukController::class, 'index']);
 
