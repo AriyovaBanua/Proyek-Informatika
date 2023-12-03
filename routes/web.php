@@ -17,19 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Http\Controllers\AdminController;
-
-
-
+use App\Http\Controllers\LoginController;
 // Route::get('/login', [AdminController::class, 'halamanLogin'])->name('login');
 
 // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.admin_dashboard');
 
-Route::get('/login', [AdminController::class, 'halamanLogin'])->name('login');
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit'); 
+Route::get('/login', [LoginController::class, 'halamanLogin'])->name('login');
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.submit'); 
+
+
+use App\Http\Controllers\AdminController;
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
 
 // Halaman Admin Users ----------------------------------------------------------------------->
 Route::get('/admin/users', [AdminController::class, 'halamanUsers'])->name('admin.users');
@@ -52,9 +51,9 @@ Route::get('admin/products', [ProdukController::class, 'index'])->name('produk.i
 Route::get('admin/poducts/create', [ProdukController::class, 'create'])->name('produk.create');
 Route::post('admin/products/store', [ProdukController::class, 'store'])->name('produk.store');
 
-Route::get('admin/products/{code}/edit', [ProdukController::class, 'edit'])->name('products.edit');
-Route::put('admin/products/{code}', [ProdukController::class, 'update'])->name('products.update');
-Route::delete('admin/products/{code}', [ProdukController::class, 'destroy'])->name('products.destroy');
+Route::get('admin/products/{code}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
+Route::put('admin/products/{code}', [ProdukController::class, 'update'])->name('produk.update');
+Route::delete('admin/products/{code}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 
 // ------------------------------------------------------------------------------------------->
 

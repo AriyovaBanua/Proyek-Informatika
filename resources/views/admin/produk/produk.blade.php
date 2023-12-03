@@ -7,7 +7,7 @@
     <h1>Daftar Produk</h1>
     <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
     <p>{{ session('error') }} </p>
-    
+    <p>{{ session('success') }} </p>
     <div class="row">
         @foreach($produks as $produk)
         <div class="col-md-4 mb-4">
@@ -21,8 +21,8 @@
                     <p class="card-text">Harga: {{ $produk->harga }}</p>
                     <p class="card-text">Ukuran: {{ $produk->ukuran }}</p>
                     <p class="card-text">Warna: {{ $produk->warna }}</p>
-                    <a href="{{ route('products.edit', $produk->code) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('products.destroy', $produk->code) }}" method="POST" style="display: inline;">
+                    <a href="{{ route('produk.edit', $produk->code) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('produk.destroy', $produk->code) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>

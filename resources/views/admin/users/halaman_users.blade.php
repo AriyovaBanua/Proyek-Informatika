@@ -12,7 +12,8 @@
 <!-- Tabel untuk menampilkan daftar admin -->
 <div class="container">
     <a href="{{ route('admin.create') }}" class="btn btn-primary mb-3">Tambah Admin</a>
-    
+    <p>{{ session('error') }} </p>
+    <p>{{ session('success') }} </p>
     <table class="table">
         <thead>
             <tr>

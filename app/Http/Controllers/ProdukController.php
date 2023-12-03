@@ -11,14 +11,14 @@ class ProdukController extends Controller
     public function index()
     {
         $produks = Produk::all(); // Ambil semua produk
-        return view('admin.produk', ['produks' => $produks]);
+        return view('admin.produk.produk', ['produks' => $produks]);
     }
 
     // Metode lain seperti create(), edit(), update(), destroy(), dll.
 
     public function create()
     {
-        return view('admin.tambah_produk');
+        return view('admin.produk.tambah_produk');
     }
 
     public function store(Request $request)
@@ -92,5 +92,75 @@ class ProdukController extends Controller
         return $newCode;
     }
 
+    // Fungsi untuk menampilkan halaman edit produk
+    public function edit($code)
+    {
+        // Temukan produk berdasarkan code
+        $produk = Produk::where('code', $code)->first();
+
+        if (!$produk) {
+            return redirect()->route('produk.index')->with('error', 'Produk tidak ditemukan.');
+        }
+
+        return view('admin.produk.edit_produk', compact('produk'));
+    }
+
+    // Method untuk menyimpan perubahan pada produk ke dalam basis data
+    public function update(Request $request, $code)
+    {
+        // Temukan produk berdasarkan code
+        $produk = Produk::where('code', $code)->first();
+
+        if (!$produk) {
+            return redirect()->route('produk.index')->with('error', 'Produk tidak ditemukan.');
+        }
+
+        // Validasi data yang diinput sebelum disimpan
+        $validatedData = $request->validate([
+            'nama_produk' => 'required',
+            'stock' => 'required|numeric',
+            'category' => 'required',
+            'harga' => 'required|numeric',
+            'ukuran' => 'required',
+            'warna' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // jika ingin validasi untuk gambar
+        ]);
+
+        // Menyimpan data harga sebelum diupdate
+        $oldHarga = $produk->harga;
+
+        // Simpan perubahan data
+        $produk->update($validatedData);
+
+        // Bandingkan harga sebelum dan sesudah update
+        if ($oldHarga != $validatedData['harga']) {
+            $history = new HistoryProduk();
+            $history->code = $produk->code;
+            $history->harga =$validatedData['harga'];
+            $history->update_time = now()->toDateString();
+            $history->save();
+        }
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
+    }
+
+    // Method untuk menghapus produk dari basis data
+    public function destroy($code)
+    {
+        // Temukan produk berdasarkan code
+        $produk = Produk::where('code', $code)->first();
+
+        if (!$produk) {
+            return redirect()->route('produk.index')->with('error', 'Produk tidak ditemukan.');
+        }
+
+        // Hapus produk
+        $produk->delete();
+
+        // Hapus riwayat perubahan harga terkait produk yang dihapus
+        HistoryProduk::where('code', $code)->delete();
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
+    }
 
 }
