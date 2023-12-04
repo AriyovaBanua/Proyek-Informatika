@@ -18,7 +18,7 @@
                     <p class="card-text">Code: {{ $produk->code }}</p>
                     <p class="card-text">Stock: {{ $produk->stock }}</p>
                     <p class="card-text">Category: {{ $produk->category }}</p>
-                    <p class="card-text">Harga: {{ $produk->harga }}</p>
+                    <p class="card-text">Harga: Rp {{ $produk->harga }}</p>
                     <p class="card-text">Ukuran: {{ $produk->ukuran }}</p>
                     <p class="card-text">Warna: {{ $produk->warna }}</p>
                     <a href="{{ route('produk.edit', $produk->code) }}" class="btn btn-primary">Edit</a>

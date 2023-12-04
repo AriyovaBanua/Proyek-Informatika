@@ -38,7 +38,7 @@
 
             <!-- Nav Item - Pemesanan -->
             <li class="nav-item @yield('pemesanan-sidebar')">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('pemesanan.index') }}">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>Pemesanan</span></a>
             </li>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Customer -->
             <li class="nav-item @yield('customer-sidebar')">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.customers') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Customer</span></a>
             </li>

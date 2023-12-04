@@ -57,8 +57,30 @@ Route::delete('admin/products/{code}', [ProdukController::class, 'destroy'])->na
 
 // ------------------------------------------------------------------------------------------->
 
+// Halaman Admin Produk----------------------------------------------------------------------->
+use App\Http\Controllers\CustomerController;
+Route::get('admin/customers', [CustomerController::class, 'index'])->name('admin.customers');
+Route::delete('admin/customer/{email}',  [CustomerController::class, 'destroy'])->name('customer.delete');
+
+
+// ------------------------------------------------------------------------------------------->
+
+// Halaman Admin Pemesanan----------------------------------------------------------------------->
+use App\Http\Controllers\PemesananController;
+
+Route::get('admin/pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');;
+Route::get('admin/pemesanan/{status}', [PemesananController::class, 'show'])->name('pemesanan.show');;
+Route::post('admin/pemesanan/konfirmasi/{orderId}', [PemesananController::class, 'konfirmasi'])->name('pemesanan.konfirmasi');;
+Route::delete('admin/pemesanan/hapus/{orderId}', [PemesananController::class, 'hapus'])->name('pemesanan.hapus');;
+// ------------------------------------------------------------------------------------------->
+
+
 use App\Http\Controllers\PengunjungController;
 Route::get('arca_artshop', [PengunjungController::class, 'index'])->name('pengunjung.index');
+
+
+
+
 // Route::prefix('admin')->middleware('auth')->group(function () {
     
 //     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
