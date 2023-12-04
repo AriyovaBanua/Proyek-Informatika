@@ -29,8 +29,10 @@ class ProdukController extends Controller
                 'nama_produk' => 'required',
                 'stock' => 'required|numeric',
                 'category' => 'required',
-                'harga' => 'required|numeric',
-                'ukuran' => 'required',
+                'harga_small' => 'required|numeric',
+                'harga_medium' => 'required|numeric',
+                'harga_large' => 'required|numeric',
+                
                 'warna' => 'required',
                 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
             ]);
@@ -41,8 +43,10 @@ class ProdukController extends Controller
             $produk->nama_produk = $validatedData['nama_produk'];
             $produk->stock = $validatedData['stock'];
             $produk->category = $validatedData['category'];
-            $produk->harga = $validatedData['harga'];
-            $produk->ukuran = $validatedData['ukuran'];
+            $produk->harga_small = $validatedData['harga_small'];
+            $produk->harga_medium = $validatedData['harga_medium'];
+            $produk->harga_large = $validatedData['harga_large'];
+            
             $produk->warna = $validatedData['warna'];
 
             // Simpan gambar ke dalam storage
@@ -61,7 +65,9 @@ class ProdukController extends Controller
             // Update tabel history_produk
             $history = new HistoryProduk();
             $history->code = $produk->code;
-            $history->harga = $produk->harga;
+            $history->harga_small = $produk->harga_small;
+            $history->harga_medium = $produk->harga_medium;
+            $history->harga_large = $produk->harga_large;
             $history->update_time = now()->toDateString();
             $history->save();
 
@@ -120,24 +126,54 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'stock' => 'required|numeric',
             'category' => 'required',
-            'harga' => 'required|numeric',
-            'ukuran' => 'required',
+            'harga_small' => 'required|numeric',
+            'harga_medium' => 'required|numeric',
+            'harga_large' => 'required|numeric',
+            
             'warna' => 'required',
             'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // jika ingin validasi untuk gambar
         ]);
 
         // Menyimpan data harga sebelum diupdate
-        $oldHarga = $produk->harga;
+        $oldHarga = [
+            'harga_small' => $produk->harga_small,
+            'harga_medium' => $produk->harga_medium,
+            'harga_large' => $produk->harga_large
+        ];
+
+        $newHarga = [
+            'harga_small' => $validatedData['harga_small'],
+            'harga_medium' => $validatedData['harga_medium'],
+            'harga_large' => $validatedData['harga_large']
+        ];
 
         // Simpan perubahan data
         $produk->update($validatedData);
 
         // Bandingkan harga sebelum dan sesudah update
-        if ($oldHarga != $validatedData['harga']) {
+        $changesDetected = false;
+        $changedHarga = [];
+
+        foreach ($newHarga as $key => $value) {
+            if ($oldHarga[$key] != $value) {
+                $changedHarga[$key] = [
+                    'old' => $oldHarga[$key],
+                    'new' => $value
+                ];
+                $changesDetected = true;
+            }
+        }
+
+        // Jika ada perubahan harga, simpan riwayat perubahan
+        if ($changesDetected) {
             $history = new HistoryProduk();
             $history->code = $produk->code;
-            $history->harga =$validatedData['harga'];
             $history->update_time = now()->toDateString();
+            
+            $history->harga_small = $newHarga['harga_small'];
+            $history->harga_medium = $newHarga['harga_medium'];
+            $history->harga_large = $newHarga['harga_large'];
+
             $history->save();
         }
 
@@ -153,7 +189,13 @@ class ProdukController extends Controller
         if (!$produk) {
             return redirect()->route('produk.index')->with('error', 'Produk tidak ditemukan.');
         }
+        // Hapus gambar terkait produk
 
+        $gambarPath = public_path('gambar_produk/' . $produk->gambar); // Path ke gambar
+
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath); // Hapus gambar dari sistem penyimpanan
+        }
         // Hapus produk
         $produk->delete();
 

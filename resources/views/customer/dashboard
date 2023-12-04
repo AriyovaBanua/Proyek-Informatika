@@ -25,9 +25,9 @@
             <div class="collapse navbar-collapse justify-content-between" id="navcol-1">
                 <ul class="navbar-nav" style="color: var(--bs-white); font-weight: bold;">
                     <li class="nav-item"><a class="nav-link active" href="#" style="color: var(--bs-white);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url('arca_artshop/shop')}}" style="color: var(--bs-white);">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{url('arca_artshop/myorder')}}" style="color: var(--bs-white);">My Orders</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#footer" style="color: var(--bs-white);">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('pengunjung.shop') }}" style="color: var(--bs-white);">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-white);">Contact</a></li>
                 </ul>
                 <div class="d-flex">
                     <img src="assets/img/bag.png" alt="Shopping Bag" style="margin-right: 20px; width: 25px;">
@@ -54,7 +54,6 @@
             <img class="card-img" src="assets/img/bg2.jpg" alt="Card image" style="width:160%" height="500px">
         </div>
     </div>
-    <br>
     <section class="features-boxed">
         <div class="container">
             <div class="intro">
@@ -101,7 +100,7 @@
             </div>
         </div>
     </section>
-    <footer id="footer" class="footer-dark">
+    <footer class="footer-dark">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-3 item">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 01:25 AM
+-- Generation Time: Dec 04, 2023 at 08:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`username`, `password`, `updated_at`, `created_at`) VALUES
 ('admin', '$2y$12$yqXsuS50foQOOLF5QB9EN.Ad11wcFfAEdaQCtr03ZkFvUBjYJskBi', '2023-11-30 14:58:23', '2023-11-30 14:58:23'),
-('tejak', '$2y$12$fjAiQkDJCriqy/rcBZZHmuY/RvphAHBZCtGWw1TTGRWEeb6jF4xm2', '2023-11-30 15:07:46', '2023-11-30 15:07:46');
+('tejak', '$2y$12$fjAiQkDJCriqy/rcBZZHmuY/RvphAHBZCtGWw1TTGRWEeb6jF4xm2', '2023-11-30 15:07:46', '2023-11-30 15:07:46'),
+('yoyo', '$2y$12$HnTkJnv7BKHLtkaq/8PgduPoahZ6Opi3MhYcn.RGNVnf/.YV6SsWy', '2023-12-04 10:03:50', '2023-12-04 10:03:50');
 
 -- --------------------------------------------------------
 
@@ -77,6 +78,7 @@ CREATE TABLE `detail_transaksi` (
   `order_id` varchar(50) NOT NULL,
   `code` varchar(50) NOT NULL,
   `kuantitas` int(11) NOT NULL,
+  `ukuran` enum('S','M','L') DEFAULT NULL,
   `subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,52 +86,52 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data for table `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id`, `order_id`, `code`, `kuantitas`, `subtotal`) VALUES
-(374, '0001', 'S001', 1, 425000),
-(375, '0002', 'S001', 5, 170000),
-(376, '0003', 'S001', 2, 85000),
-(377, '0004', 'S001', 4, 255000),
-(378, '0005', 'S001', 2, 255000),
-(379, '0001', 'S002', 1, 255000),
-(380, '0002', 'S002', 1, 425000),
-(381, '0003', 'S002', 1, 170000),
-(382, '0004', 'S002', 4, 340000),
-(383, '0005', 'S002', 2, 85000),
-(384, '0001', 'S003', 2, 90000),
-(385, '0002', 'S003', 2, 270000),
-(386, '0003', 'S003', 4, 90000),
-(387, '0004', 'S003', 5, 90000),
-(388, '0005', 'S003', 1, 180000),
-(389, '0001', 'S004', 5, 500000),
-(390, '0002', 'S004', 1, 125000),
-(391, '0003', 'S004', 3, 250000),
-(392, '0004', 'S004', 1, 125000),
-(393, '0005', 'S004', 4, 125000),
-(394, '0001', 'S005', 2, 425000),
-(395, '0002', 'S005', 3, 425000),
-(396, '0003', 'S005', 3, 170000),
-(397, '0004', 'S005', 5, 425000),
-(398, '0005', 'S005', 3, 340000),
-(399, '0001', 'S006', 5, 220000),
-(400, '0002', 'S006', 2, 110000),
-(401, '0003', 'S006', 2, 275000),
-(402, '0004', 'S006', 4, 110000),
-(403, '0005', 'S006', 4, 220000),
-(404, '0001', 'S007', 4, 275000),
-(405, '0002', 'S007', 1, 110000),
-(406, '0003', 'S007', 1, 275000),
-(407, '0004', 'S007', 2, 275000),
-(408, '0005', 'S007', 5, 165000),
-(409, '0001', 'S008', 1, 270000),
-(410, '0002', 'S008', 1, 675000),
-(411, '0003', 'S008', 1, 540000),
-(412, '0004', 'S008', 4, 540000),
-(413, '0005', 'S008', 4, 405000),
-(414, '0001', 'S009', 5, 180000),
-(415, '0002', 'S009', 5, 450000),
-(416, '0003', 'S009', 4, 270000),
-(417, '0004', 'S009', 5, 360000),
-(418, '0005', 'S009', 5, 450000);
+INSERT INTO `detail_transaksi` (`id`, `order_id`, `code`, `kuantitas`, `ukuran`, `subtotal`) VALUES
+(374, '0001', 'S001', 1, 'S', 425000),
+(375, '0002', 'S001', 5, 'S', 170000),
+(376, '0003', 'S001', 2, 'S', 85000),
+(377, '0004', 'S001', 4, 'S', 255000),
+(378, '0005', 'S001', 2, 'S', 255000),
+(379, '0001', 'S002', 1, 'S', 255000),
+(380, '0002', 'S002', 1, 'S', 425000),
+(381, '0003', 'S002', 1, 'S', 170000),
+(382, '0004', 'S002', 4, 'S', 340000),
+(383, '0005', 'S002', 2, 'S', 85000),
+(384, '0001', 'S003', 2, 'S', 90000),
+(385, '0002', 'S003', 2, 'S', 270000),
+(386, '0003', 'S003', 4, 'S', 90000),
+(387, '0004', 'S003', 5, 'S', 90000),
+(388, '0005', 'S003', 1, 'S', 180000),
+(389, '0001', 'S004', 5, 'S', 500000),
+(390, '0002', 'S004', 1, 'S', 125000),
+(391, '0003', 'S004', 3, 'S', 250000),
+(392, '0004', 'S004', 1, 'S', 125000),
+(393, '0005', 'S004', 4, 'S', 125000),
+(394, '0001', 'S005', 2, 'S', 425000),
+(395, '0002', 'S005', 3, 'S', 425000),
+(396, '0003', 'S005', 3, 'S', 170000),
+(397, '0004', 'S005', 5, 'S', 425000),
+(398, '0005', 'S005', 3, 'S', 340000),
+(399, '0001', 'S006', 5, 'S', 220000),
+(400, '0002', 'S006', 2, 'S', 110000),
+(401, '0003', 'S006', 2, 'S', 275000),
+(402, '0004', 'S006', 4, 'S', 110000),
+(403, '0005', 'S006', 4, 'S', 220000),
+(404, '0001', 'S007', 4, 'S', 275000),
+(405, '0002', 'S007', 1, 'S', 110000),
+(406, '0003', 'S007', 1, 'S', 275000),
+(407, '0004', 'S007', 2, 'S', 275000),
+(408, '0005', 'S007', 5, 'S', 165000),
+(409, '0001', 'S008', 1, 'S', 270000),
+(410, '0002', 'S008', 1, 'S', 675000),
+(411, '0003', 'S008', 1, 'S', 540000),
+(412, '0004', 'S008', 4, 'S', 540000),
+(413, '0005', 'S008', 4, 'S', 405000),
+(414, '0001', 'S009', 5, 'S', 180000),
+(415, '0002', 'S009', 5, 'S', 450000),
+(416, '0003', 'S009', 4, 'S', 270000),
+(417, '0004', 'S009', 5, 'S', 360000),
+(418, '0005', 'S009', 5, 'S', 450000);
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,9 @@ INSERT INTO `detail_transaksi` (`id`, `order_id`, `code`, `kuantitas`, `subtotal
 CREATE TABLE `history_produk` (
   `id` int(11) NOT NULL,
   `code` varchar(50) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga_small` int(11) DEFAULT 0,
+  `harga_medium` int(11) DEFAULT 0,
+  `harga_large` int(11) DEFAULT 0,
   `update_time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -148,20 +152,47 @@ CREATE TABLE `history_produk` (
 -- Dumping data for table `history_produk`
 --
 
-INSERT INTO `history_produk` (`id`, `code`, `harga`, `update_time`) VALUES
-(6, 'S002', 85000, '2023-12-01'),
-(7, 'S003', 90000, '2023-12-01'),
-(8, 'S003', 20000, '2023-12-02'),
-(10, 'S001', 40000, '2023-12-02'),
-(12, 'S001', 85000, '2023-12-03'),
-(13, 'S003', 90000, '2023-12-03'),
-(14, 'S004', 125000, '2023-12-03'),
-(15, 'S005', 85000, '2023-12-03'),
-(16, 'S006', 55000, '2023-12-03'),
-(17, 'S007', 55000, '2023-12-03'),
-(18, 'S008', 55000, '2023-12-03'),
-(19, 'S009', 90000, '2023-12-03'),
-(20, 'S008', 135000, '2023-12-03');
+INSERT INTO `history_produk` (`id`, `code`, `harga_small`, `harga_medium`, `harga_large`, `update_time`) VALUES
+(6, 'S002', 85000, 0, 0, '2023-12-01'),
+(7, 'S003', 90000, 0, 0, '2023-12-01'),
+(8, 'S003', 20000, 0, 0, '2023-12-02'),
+(10, 'S001', 40000, 0, 0, '2023-12-02'),
+(12, 'S001', 85000, 0, 0, '2023-12-03'),
+(13, 'S003', 90000, 0, 0, '2023-12-03'),
+(14, 'S004', 125000, 0, 0, '2023-12-03'),
+(15, 'S005', 85000, 0, 0, '2023-12-03'),
+(16, 'S006', 55000, 0, 0, '2023-12-03'),
+(17, 'S007', 55000, 0, 0, '2023-12-03'),
+(18, 'S008', 55000, 0, 0, '2023-12-03'),
+(19, 'S009', 90000, 0, 0, '2023-12-03'),
+(20, 'S008', 135000, 0, 0, '2023-12-03'),
+(21, 'S001', 55000, 85000, 135000, '2023-12-04'),
+(22, 'S001', 0, 0, 0, '2023-12-04'),
+(23, 'S001', 0, 0, 0, '2023-12-04'),
+(24, 'S001', 55000, 85000, 0, '2023-12-04'),
+(25, 'S001', 55000, 0, 0, '2023-12-04'),
+(26, 'S001', 55000, 75000, 0, '2023-12-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keranjang`
+--
+
+CREATE TABLE `keranjang` (
+  `id_keranjang` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `kuantitas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `keranjang`
+--
+
+INSERT INTO `keranjang` (`id_keranjang`, `email`, `code`, `kuantitas`) VALUES
+(1, 'customer3@example.com', 'S004', 5),
+(2, 'customer3@example.com', 'S005', 2);
 
 -- --------------------------------------------------------
 
@@ -174,8 +205,9 @@ CREATE TABLE `produk` (
   `stock` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `ukuran` varchar(50) NOT NULL,
+  `harga_small` int(11) DEFAULT 0,
+  `harga_medium` int(11) DEFAULT 0,
+  `harga_large` int(11) DEFAULT 0,
   `gambar` varchar(50) NOT NULL,
   `warna` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -184,16 +216,16 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`code`, `stock`, `category`, `nama_produk`, `harga`, `ukuran`, `gambar`, `warna`) VALUES
-('S001', '13', 'Animal', 'Sapi Terbang', 85000, 'S', 'sapi.jpg', 'Hitam-Putih'),
-('S002', '12', 'Animal', 'Zebra Nyengir', 85000, 'S', '6569333401ac6_zebra.jpg', 'Hitam-Putih'),
-('S003', '6', 'Animal', 'Hiu Sunda', 90000, 'S', '6569345a1a48e_hiu.jpg', 'Biru'),
-('S004', '8', 'Animal', 'Lumba-lumba Jawa', 125000, 'S', '656cf56fc7752_dolpin.jpg', 'Biru'),
-('S005', '9', 'Animal', 'Keledai asli Ponorogo', 85000, 'S', '656cf76e77503_kedelai.jpg', 'Abu-abu'),
-('S006', '5', 'Animal', 'Kucing Ireng', 55000, 'S', '656cf7c9440ab_kucing hitam.jpg', 'Hitam'),
-('S007', '10', 'Animal', 'Kocing Oren', 55000, 'S', '656cf857a9d5f_kucing oren.jpg', 'Orange'),
-('S008', '12', 'Animal', 'Kucing asli Beijing', 135000, 'L', '656cf931353ee_kucing.jpg', 'Putih'),
-('S009', '15', 'Animal', 'Paus asli Selat Malaka', 90000, 'M', '656cf9fdcabb3_paus.jpg', 'Biru');
+INSERT INTO `produk` (`code`, `stock`, `category`, `nama_produk`, `harga_small`, `harga_medium`, `harga_large`, `gambar`, `warna`) VALUES
+('S001', '13', 'Animal', 'Sapi Terbang', 55000, 75000, 0, 'sapi.jpg', 'Hitam-Putih'),
+('S002', '12', 'Animal', 'Zebra Nyengir', 85000, 0, 0, '6569333401ac6_zebra.jpg', 'Hitam-Putih'),
+('S003', '6', 'Animal', 'Hiu Sunda', 90000, 0, 0, '6569345a1a48e_hiu.jpg', 'Biru'),
+('S004', '8', 'Animal', 'Lumba-lumba Jawa', 125000, 0, 0, '656cf56fc7752_dolpin.jpg', 'Biru'),
+('S005', '9', 'Animal', 'Keledai asli Ponorogo', 85000, 0, 0, '656cf76e77503_kedelai.jpg', 'Abu-abu'),
+('S006', '5', 'Animal', 'Kucing Ireng', 55000, 0, 0, '656cf7c9440ab_kucing hitam.jpg', 'Hitam'),
+('S007', '10', 'Animal', 'Kocing Oren', 55000, 0, 0, '656cf857a9d5f_kucing oren.jpg', 'Orange'),
+('S008', '12', 'Animal', 'Kucing asli Beijing', 135000, 0, 0, '656cf931353ee_kucing.jpg', 'Putih'),
+('S009', '15', 'Animal', 'Paus asli Selat Malaka', 90000, 0, 0, '656cf9fdcabb3_paus.jpg', 'Biru');
 
 -- --------------------------------------------------------
 
@@ -251,6 +283,14 @@ ALTER TABLE `history_produk`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `keranjang`
+--
+ALTER TABLE `keranjang`
+  ADD PRIMARY KEY (`id_keranjang`),
+  ADD KEY `email` (`email`,`code`),
+  ADD KEY `code` (`code`);
+
+--
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
@@ -277,7 +317,13 @@ ALTER TABLE `detail_transaksi`
 -- AUTO_INCREMENT for table `history_produk`
 --
 ALTER TABLE `history_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `keranjang`
+--
+ALTER TABLE `keranjang`
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -289,6 +335,13 @@ ALTER TABLE `history_produk`
 ALTER TABLE `detail_transaksi`
   ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `transakasi` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_transaksi_produk` FOREIGN KEY (`code`) REFERENCES `produk` (`code`);
+
+--
+-- Constraints for table `keranjang`
+--
+ALTER TABLE `keranjang`
+  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`email`) REFERENCES `customer` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`code`) REFERENCES `produk` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transakasi`

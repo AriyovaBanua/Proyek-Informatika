@@ -38,14 +38,24 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="harga" class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="harga" name="harga" value="{{ $produk->harga }}">
+                            <p class="text-danger">Isi harga sesuai kebutuhan, biarkan 0 bila tidak mengisi</p>
                         </div>
 
                         <div class="mb-3">
-                            <label for="ukuran" class="form-label">Ukuran</label>
-                            <input type="text" class="form-control" id="ukuran" name="ukuran" value="{{ $produk->ukuran }}">
+                            <label for="harga" class="form-label">Harga (S)</label>
+                            <input type="number" class="form-control" id="harga_small" name="harga_small" value="{{ $produk->harga_small }}">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga (M)</label>
+                            <input type="number" class="form-control" id="harga_medium" name="harga_medium" value="{{ $produk->harga_medium }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga (L)</label>
+                            <input type="number" class="form-control" id="harga_large" name="harga_large" value="{{ $produk->harga_large }}">
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="warna" class="form-label">Warna</label>
