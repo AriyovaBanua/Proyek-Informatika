@@ -69,6 +69,9 @@ Route::delete('admin/customer/{email}',  [CustomerController::class, 'destroy'])
 use App\Http\Controllers\PemesananController;
 
 Route::get('admin/pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');;
+Route::get('admin/pemesanan/Proses', [PemesananController::class, 'halamanProses'])->name('pemesanan.halamanProses');;
+Route::get('admin/pemesanan/Dikirim', [PemesananController::class, 'halamanDikirim'])->name('pemesanan.halamanDikrim');;
+Route::get('admin/pemesanan/Selesai', [PemesananController::class, 'halamanSelesai'])->name('pemesanan.halamanSelesai');;
 Route::get('admin/pemesanan/{status}', [PemesananController::class, 'show'])->name('pemesanan.show');;
 Route::post('admin/pemesanan/konfirmasi/{orderId}', [PemesananController::class, 'konfirmasi'])->name('pemesanan.konfirmasi');;
 Route::delete('admin/pemesanan/hapus/{orderId}', [PemesananController::class, 'hapus'])->name('pemesanan.hapus');;
