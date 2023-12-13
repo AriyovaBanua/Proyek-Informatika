@@ -82,6 +82,8 @@ use App\Http\Controllers\PengunjungController;
 Route::get('arca_artshop', [PengunjungController::class, 'index'])->name('pengunjung.index');
 Route::get('arca_artshop/shop', [PengunjungController::class, 'shop'])->name('pengunjung.shop');
 Route::get('arca_artshop/myorder', [PengunjungController::class, 'myorder'])->name('pengunjung.myorder');
+Route::get('arca_artshop/shop/view_detail', [PengunjungController::class, 'viewDetail'])->name('pengunjung.shop.view_detail');
+Route::get('arca_artshop/shop/view_detail/chart', [PengunjungController::class, 'chart'])->name('pengunjung.shop.view_detail.chart');
 
 
 

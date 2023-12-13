@@ -19,4 +19,13 @@ class PengunjungController extends Controller
     {
         return view("customer.myorder");
     }
+
+    public function viewDetail()
+    {
+        return view("customer.viewdetail");
+    }
+    public function chart()
+    {
+        return view("customer.chart");
+    }
 }
